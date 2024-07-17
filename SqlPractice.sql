@@ -44,3 +44,64 @@ select
 		else 'Expensive'
 		end as "Price Category"
 from titles ;
+
+--length of title
+select title, length(title), --left(tittle, 10), right(title,10)
+from titles ;
+
+--length of title
+select title
+from titles ;
+
+select '12.45':: numeric :: money
+select cast( cast('12.45'as numeric) as money);
+
+select au_lname ||'' || au_lname  as "Name"
+from authors;
+
+-- calc averag price, max, min,  count
+select 
+	avg (price :: numeric ) :: money,
+	min (price :: numeric),
+	max ( price :: numeric ) , 
+	count(price),
+	count (*),
+	count ( distinct price)
+from titles 
+
+
+--
+--
+select state , city
+from authors;
+
+--unique states
+select distinct state
+from authors 
+group by state;
+
+-- states
+select state 
+from authors 
+group by state;
+
+-- group by state
+select state , count (state)
+from authors
+group by state
+
+-- group by type and return avg price
+select type, avg(price::numeric), pub_id 
+from titles
+group by type, pub_id;
+
+-- group by type and price
+select type, price 
+from titles
+group by type, price
+order by type
+
+--fixed 2
+select type , avg(price :: numeric)
+from titles  
+group by type;
